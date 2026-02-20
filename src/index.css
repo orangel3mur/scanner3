@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+  :root {
+    --background: 220 20% 4%;
+    --foreground: 142 70% 60%;
+
+    --card: 220 20% 6%;
+    --card-foreground: 142 70% 60%;
+
+    --popover: 220 20% 8%;
+    --popover-foreground: 142 70% 60%;
+
+    --primary: 142 70% 45%;
+    --primary-foreground: 220 20% 4%;
+
+    --secondary: 220 15% 12%;
+    --secondary-foreground: 142 70% 60%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 142 40% 40%;
+
+    --accent: 45 100% 50%;
+    --accent-foreground: 220 20% 4%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 142 30% 20%;
+    --input: 220 15% 12%;
+    --ring: 142 70% 45%;
+
+    --radius: 0.5rem;
+
+    --glow-primary: 0 0 20px hsl(142 70% 45% / 0.5);
+    --glow-accent: 0 0 20px hsl(45 100% 50% / 0.5);
+    --glow-destructive: 0 0 20px hsl(0 70% 50% / 0.5);
+
+    --sidebar-background: 220 20% 5%;
+    --sidebar-foreground: 142 70% 60%;
+    --sidebar-primary: 142 70% 45%;
+    --sidebar-primary-foreground: 220 20% 4%;
+    --sidebar-accent: 220 15% 12%;
+    --sidebar-accent-foreground: 142 70% 60%;
+    --sidebar-border: 142 30% 20%;
+    --sidebar-ring: 142 70% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    background-image: 
+      radial-gradient(ellipse at top, hsl(142 70% 10% / 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, hsl(45 100% 50% / 0.05) 0%, transparent 50%);
+  }
+}
+
+@layer components {
+  .terminal-text {
+    @apply font-mono text-foreground;
+    text-shadow: 0 0 10px hsl(142 70% 45% / 0.5);
+  }
+
+  .glow-border {
+    box-shadow: 
+      inset 0 0 0 1px hsl(142 70% 45% / 0.3),
+      0 0 15px hsl(142 70% 45% / 0.2);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .scan-line {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      hsl(142 70% 45% / 0.03) 50%,
+      transparent 100%
+    );
+    animation: scan 8s linear infinite;
+  }
+
+  .matrix-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2322c55e' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .hex-display {
+    @apply font-mono text-xs tracking-wider;
+    word-break: break-all;
+  }
+}
+
+@layer utilities {
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  @keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  .scrollbar-terminal::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar-terminal::-webkit-scrollbar-track {
+    background: hsl(220 20% 6%);
+  }
+
+  .scrollbar-terminal::-webkit-scrollbar-thumb {
+    background: hsl(142 70% 30%);
+    border-radius: 4px;
+  }
+
+  .scrollbar-terminal::-webkit-scrollbar-thumb:hover {
+    background: hsl(142 70% 40%);
+  }
+}
